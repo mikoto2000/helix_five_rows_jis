@@ -1,29 +1,21 @@
 # Helix 5 rows JIS layout
 
+This keymap was created based on [`five_rows_jis` in qmk_firmware.](https://github.com/qmk/qmk_firmware/tree/master/keyboards/helix/rev2/keymaps/five_rows_jis)
+
 This keymap was created with the concept that users using Japanese JIS keyboard layout can operate without difficulty. It has the following features.  
 
 * We are considering to be able to input long Japanese notes without moving the layer
-* We are arranging the relation of symbols that can not fit in the Lower layer keeping the positional relationship
-* The four-way key is in a convex arrangement
-* Ctrl, Shift, Tab, Kanji, Esc, GUI (Win), App keys are arranged keeping positional relationship
-* Lower / Raise keymap is considering easy placement so that it can be used without memorizing
+* We are arranging the relation of symbols that can not fit in the Raise layer
 
-This keymap also includes a "NORMAL" keymap that uses Helix's split keyboard as usual, and an "EXCHANGE" key that exchanges left and right sides of Helix's split keyboard for key position optimization I am trying to switch maps. These have the following additional features.  
 
 ## NORMAL Keymap
 
 * It is possible to press the N key with the left index finger and the B key with the right index finger
 
-## EXCHANGE Keymap
-
-* By using the 2 key under Pro micro effectively add `` `[{` `` `` `]]` ``, `` `/?` `` Keys to NORMAL's base keymap And make inputs other than the `` `\ _` `` key possible with the base map
-* To avoid mistakes in pressing the Kanji key and the Enter key, we are moving to the 2 key.
 
 ## 配列
 
 ### NORMAL Keymap
-
- Adjust + ModExc key switches to the NORMAL keymap.  
 
 Base Layer  
 
@@ -73,63 +65,7 @@ Raise Layer
  `-------------------------------------------------------------------------------------------------'
 ```
 
-### EXCHANGE Keymap
-
-Adjust + ModExc key switches to the EXCHANGE keymap.  
-
-Base Layer  
-
-```
-        ,-----------------------------------------.,-----------------------------------------.
-        | Esc  |  1!  |  2"  |  3#  |  4$  |  5%  ||  6&  |  7'  |  8(  |  9)  |   0  |  -=  |
-        |------+------+------+------+------+------||------+------+------+------+------+------|
-        | Tab  |   Q  |   W  |   E  |   R  |   T  ||   Y  |   U  |   I  |   O  |   P  |  @`  |
-        |------+------+------+------+------+------||------+------+------+------+------+------|
-        |      |   A  |   S  |   D  |   F  |   G  ||   H  |   J  |   K  |   L  |  ;+  |  :*  |
- ,------+------+------+------+------+------+------||------+------+------+------+------+------+------.
- |KANJI | Shift|   Z  |   X  |   C  |   V  |   B  ||   N  |   M  |  ,<  |  .>  |  /?  |  Up  |Enter |
- |------+------+------+------+------+------+------||------+------+------+------+------+------+------|
- |Adjust| Ctrl | GUI  | Alt  |  [{  |Lower | Bksp ||Space |Raise |  }]  | APP  | Left | Down |Right |
- `------------------------------------------------'`------------------------------------------------'
-```
-
-Lower Layer  
-
-```
-        ,-----------------------------------------.,-----------------------------------------.
-        |      |      |      |      |      |      ||      |      |      |  -=  |  ^~  |  \|  |
-        |------+------+------+------+------+------||------+------+------+------+------+------|
-        |      |      |      |      |      |      ||      |      |      |      |  @`  |  [{  |
-        |------+------+------+------+------+------||------+------+------+------+------+------|
-        |      |      |      |      |      |      ||      |      |      |  ;+  |  :*  |  ]}  |
- ,------+------+------+------+------+------+------||------+------+------+------+------+------+------.
- |      |      |      |      |      |      |      ||      |  ,<  |  .>  |  /?  |  \_  |PageUp|      |
- |------+------+------+------+------+------+------||------+------+------+------+------+------+------|
- |      |      |      |      |      |      | Del  ||      |      |      |      | Home |PageDn| End  |
- `------------------------------------------------'`------------------------------------------------'
-```
-
-Raise Layer  
-
-```
-        ,-----------------------------------------.,-----------------------------------------.
-        |      |  F1  |  F2  |  F3  |  F4  |  F5  ||  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |
-        |------+------+------+------+------+------||------+------+------+------+------+------|
-        |      |      |      |      |      |      || F12  |      |      |      |      |      |
-        |------+------+------+------+------+------||------+------+------+------+------+------|
-        |      |      |      |      |      |      ||      |      |      |      |      |      |
- ,------+------+------+------+------+------+------||------+------+------+------+------+------+------.
- |      |      |MsBtn1|MsBtn2|      |      |      ||      |      |      |      |      | MsUp |      |
- |------+------+------+------+------+------+------||------+------+------+------+------+------+------|
- |      |      |      |      |      |      |      ||      |      |      |      |MsLeft|MsDown|MsRght|
- `------------------------------------------------'`------------------------------------------------'
-```
-
-### NORMAL/EXCHANGE common Layer
-
 Adjust Layer
-
- NORMAL / EXCHANGE This layer is used in common. The same items are arranged in the same row on both sides so that they can be used in common.
 
 ```
  ,-----------------------------------------.             ,-----------------------------------------.
