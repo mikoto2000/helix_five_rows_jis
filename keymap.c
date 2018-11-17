@@ -30,11 +30,8 @@ extern uint8_t is_master;
 // entirely and just use numbers.
 enum layer_number {
   _BASE = 0,
-  _BAS_E,
   _LOWER,
-  _LOW_E,
   _RAISE,
-  _RAI_E,
   _ADJUST,
 };
 
@@ -52,11 +49,8 @@ enum custom_keycodes {
 
 // Layer Mode aliases
 #define DL_BAS  DF(_BASE)
-#define DL_BASE DF(_BAS_E)
 #define ML_LOW  MO(_LOWER)
-#define ML_LOWE MO(_LOW_E)
 #define ML_RAI  MO(_RAISE)
-#define ML_RAIE MO(_RAI_E)
 #define ML_ADJ  MO(_ADJUST)
 
 #if HELIX_ROWS == 5
@@ -82,27 +76,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ML_ADJ,  KC_LALT, KC_ESC, KC_LGUI, ML_LOW, JP_MHEN, KC_SPC,  KC_SPC,  JP_HENK, ML_RAI, KC_LEFT, KC_UP,  KC_DOWN, KC_RGHT  \
     ),
 
-  /* Qwerty JIS Exchange L and R
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * |  6&  |  7'  |  8(  |  9)  |   0  |  -=  |             | Esc  |  1!  |  2"  |  3#  |  4$  |  5%  |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |   Y  |   U  |   I  |   O  |   P  |  @`  |             | Tab  |   Q  |   W  |   E  |   R  |   T  |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |   H  |   J  |   K  |   L  |  ;+  |  :*  |             |      |   A  |   S  |   D  |   F  |   G  |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |   N  |   M  |  ,<  |  .>  |  /?  |  Up  |Enter |KANJI | Shift|   Z  |   X  |   C  |   V  |   B  |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |Space |Raise |  }]  | APP  | Left | Down |Right |Adjust| Ctrl | GUI  | Alt  |  [{  |Lower | Bksp |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  [_BAS_E] = LAYOUT( \
-    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,                   KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,   \
-    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    JP_AT,                     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   \
-    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, JP_COLN,                   XXXXXXX, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   \
-    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_UP,   KC_ENT,  JP_ZHTG, KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   \
-    KC_SPC,  ML_RAIE, JP_RBRC, KC_APP,  KC_LEFT, KC_DOWN, KC_RGHT, ML_ADJ,  KC_LCTL, KC_LALT, KC_LGUI, JP_LBRC, ML_LOWE, KC_BSPC \
-    ),
-
   /* Lower JIS Normal
    * ,-----------------------------------------.             ,-----------------------------------------.
    * |      |      |      |      |      |      |             |      |      |      |  -=  |  ^~  |  \|  |
@@ -122,27 +95,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, JP_COLN, JP_RBRC, \
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_COMM, KC_DOT,  KC_SLSH, JP_BSLS, \
     _______, _______, _______, _______, XXXXXXX, XXXXXXX, KC_DEL,  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX  \
-    ),
-
-  /* Lower JIS Exchange L and R
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * |      |      |      |  -=  |  ^~  |  \|  |             |      |      |      |      |      |      |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |      |  @`  |  [{  |             |      |      |      |      |      |      |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |  ;+  |  :*  |  ]}  |             |      |      |      |      |      |      |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |  ,<  |  .>  |  /?  |  \_  |PageUp|      |      |      |      |      |      |      |      |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      | Home |PageDn| End  |      |      |      |      |      |      | Del  |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  [_LOW_E] = LAYOUT( \
-    _______, XXXXXXX, XXXXXXX, KC_MINS, JP_CIRC, JP_YEN,                    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    _______, XXXXXXX, XXXXXXX, XXXXXXX, JP_AT,   JP_LBRC,                   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    _______, XXXXXXX, XXXXXXX, KC_SCLN, JP_COLN, JP_RBRC,                   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    _______, KC_COMM, KC_DOT,  KC_SLSH, JP_BSLS, KC_PGUP, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    _______, _______, XXXXXXX, _______, KC_HOME, KC_PGDN, KC_END,  _______, _______, _______, _______, XXXXXXX, _______, KC_DEL   \
     ),
 
   /* Raise JIS Normal
@@ -166,27 +118,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX  \
     ),
 
-  /* Raise JIS Exchange L and R
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * |  F6  |  F7  |  F8  |  F9  | F10  | F11  |             |      |  F1  |  F2  |  F3  |  F4  |  F5  |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |MsWhL |MsWhU | F12  |             |      |      |      |      |      |      |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |MsWhR |MsWhD |      |             |      |      |      |      |      |      |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |MsBtn1|MsBtn2| MsUp |      |      |      |      |      |      |      |      |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |MsLeft|MsDown|MsRght|      |      |      |      |      |      |      |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  [_RAI_E] = LAYOUT( \
-    KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,                    _______, KC_F1  , KC_F2,   KC_F3,   KC_F4,   KC_F5,   \
-    XXXXXXX, XXXXXXX, XXXXXXX, KC_WH_L, KC_WH_U, KC_F12,                    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    XXXXXXX, XXXXXXX, XXXXXXX, KC_WH_R, KC_WH_D, XXXXXXX,                   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN1, KC_BTN2, KC_MS_U, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    _______, _______, XXXXXXX, _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, _______, _______, XXXXXXX, _______, XXXXXXX  \
-    ),
-
   /* Adjust (Lower + Raise) Common map for Normal and Exchange
    * ,-----------------------------------------.             ,-----------------------------------------.
    * |      | Reset|RGBRST|      |      |      |             |      | Reset|RGBRST|      |      |      |
@@ -202,7 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [_ADJUST] =  LAYOUT( \
     XXXXXXX, RESET,   RGBRST,  XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, RESET,   RGBRST,  XXXXXXX, XXXXXXX, XXXXXXX, \
-    XXXXXXX, DL_BAS,  DL_BASE, AG_NORM, AG_SWAP, XXXXXXX,                   XXXXXXX, DL_BAS,  DL_BASE, AG_NORM, AG_SWAP, XXXXXXX, \
+    XXXXXXX, DL_BAS,  XXXXXXX, AG_NORM, AG_SWAP, XXXXXXX,                   XXXXXXX, DL_BAS,  XXXXXXX, AG_NORM, AG_SWAP, XXXXXXX, \
     XXXXXXX, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX,                   XXXXXXX, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, \
     XXXXXXX, RGB_SMOD,RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_SMOD,RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, \
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
@@ -358,9 +289,6 @@ static inline void matrix_update(struct CharacterMatrix *dest,
 #define L_RAISE (1<<_RAISE)
 #define L_ADJUST (1<<_ADJUST)
 #define L_ADJUST_TRI (L_ADJUST|L_RAISE|L_LOWER)
-#define L_LOW_E (1<<_LOW_E)
-#define L_RAI_E (1<<_RAI_E)
-#define L_ADJUST_TRIE (L_ADJUST|L_RAI_E|L_LOW_E)
 
 const char helix_logo[]={
   0x80,0x81,0x82,0x83,0x84,0x85,0x86,0x87,0x88,0x89,0x8a,0x8b,0x8c,0x8d,0x8e,0x8f,0x90,0x91,0x92,0x93,0x94,
@@ -398,23 +326,16 @@ static inline void render_status(struct CharacterMatrix *matrix) {
   matrix_write_P(matrix, PSTR("\nLayer: "));
   switch (layer_state) {
     case L_BASE:
-      matrix_write_P(matrix, default_layer_state == (1UL<<_BAS_E) ? PSTR("BaseEx") : PSTR("Base"));
+      matrix_write_P(matrix, PSTR("Base"));
       break;
     case L_RAISE:
       matrix_write_P(matrix, PSTR("Raise"));
       break;
-    case L_RAI_E:
-      matrix_write_P(matrix, PSTR("RaiseEx"));
-      break;
     case L_LOWER:
       matrix_write_P(matrix, PSTR("Lower"));
       break;
-    case L_LOW_E:
-      matrix_write_P(matrix, PSTR("LowerEx"));
-      break;
     case L_ADJUST:
     case L_ADJUST_TRI:
-    case L_ADJUST_TRIE:
       matrix_write_P(matrix, PSTR("Adjust"));
       break;
     default:
