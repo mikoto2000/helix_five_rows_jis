@@ -62,6 +62,12 @@ enum custom_keycodes {
 #define DM_PLY2 DYN_MACRO_PLAY2
 #define DM_STOP DYN_REC_STOP
 
+// vim like keys
+#define KC_C_L RCTL(KC_LEFT)
+#define KC_C_R RCTL(KC_RIGHT)
+#define KC_C_V RCTL(KC_V)
+#define KC_C_Y RCTL(KC_C)
+
 #if HELIX_ROWS == 5
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Qwerty JIS Normal
@@ -86,23 +92,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
   /* Lower JIS Normal
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * |      |      |      |      |      |      |             |      |      |      |  -=  |  ^~  |  \|  |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |      |      |      |             |      |      |      |      |  @`  |  [{  |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |      |      |      |             | Left | Down | Up   | Right|  :*  |  ]}  |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |      |      |      |      |      |  ,<  |  .>  |  /?  |  \_  |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |      | Del  |      |      |      |      |      |      |      |
-   * `-------------------------------------------------------------------------------------------------'
+   * ,------------------------------------------.             ,-----------------------------------------.
+   * |      |      |       |      | END  |      |             |      |      |      |      | HOME |      |
+   * |------+------+-------+------+------+------|             |------+------+------+------+------+------|
+   * |      |      |C+Right|      |      |      |             | C+y  |      |      |      | C+v  |      |
+   * |------+------+-------+------+------+------|             |------+------+------+------+------+------|
+   * |      |      |       |      |      |      |             | Left | Down | Up   | Right|      |      |
+   * |------+------+-------+------+------+------+------+------+------+------+------+------+------+------|
+   * |      |      |       |      |      |C+Left|      |C+Left|      |      |      |      |      |      |
+   * |------+------+-------+------+------+------+------+------+------+------+------+------+------+------|
+   * |      |      |       |      |      |      | Del  |      |      |      |      |      |      |      |
+   * `--------------------------------------------------------------------------------------------------'
    */
   [_LOWER] = LAYOUT( \
-    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, KC_MINS, JP_CIRC, JP_YEN,  \
-    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, JP_AT,   JP_LBRC, \
-    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, JP_COLN, JP_RBRC, \
-    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_COMM, KC_DOT,  KC_SLSH, JP_BSLS, \
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_END,  XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, XXXXXXX, \
+    _______, XXXXXXX, KC_C_R,  XXXXXXX, XXXXXXX, XXXXXXX,                   KC_C_Y,  XXXXXXX, XXXXXXX, XXXXXXX, KC_C_V,  XXXXXXX, \
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX, \
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_C_L,  XXXXXXX, KC_C_L,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
     _______, _______, _______, _______, XXXXXXX, XXXXXXX, KC_DEL,  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX  \
     ),
 
