@@ -41,6 +41,7 @@ enum custom_keycodes {
   EISU,
   KANA,
   #endif
+  DYNAMIC_MACRO_RANGE,
 };
 
 // Fillers to make layering more clear
@@ -52,6 +53,14 @@ enum custom_keycodes {
 #define ML_LOW  MO(_LOWER)
 #define ML_RAI  MO(_RAISE)
 #define ML_ADJ  MO(_ADJUST)
+
+// Dynamic macros
+#include "dynamic_macro.h"
+#define DM_REC1 DYN_REC_START1
+#define DM_REC2 DYN_REC_START2
+#define DM_PLY1 DYN_MACRO_PLAY1
+#define DM_PLY2 DYN_MACRO_PLAY2
+#define DM_STOP DYN_REC_STOP
 
 #if HELIX_ROWS == 5
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -65,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   B  |   N  |   M  |  ,<  |  .>  |  /?  |  \_  |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |Adjust| Alt  | ESC  | GUI  |Lower | Mhen |Space |Space | Henk |Raise | Left | Down | Up   |Right |
+   * | PLAY1| Alt  |Adjust| GUI  |Lower | Mhen |Space |Space | Henk |Raise | PLAY1| PLAY2|  ^~  |  \|  |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_BASE] = LAYOUT( \
@@ -73,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_Q,    KC_W,   KC_E,    KC_R,   KC_T,                      KC_Y,    KC_U,   KC_I,    KC_O,    KC_P,    JP_AT,   \
     KC_LCTL, KC_A,    KC_S,   KC_D,    KC_F,   KC_G,                      KC_H,    KC_J,   KC_K,    KC_L,    KC_SCLN, JP_COLN, \
     KC_LSFT, KC_Z,    KC_X,   KC_C,    KC_V,   KC_B,    KC_N,    KC_B,    KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, JP_BSLS,  \
-    ML_ADJ,  KC_LALT, KC_ESC, KC_LGUI, ML_LOW, JP_MHEN, KC_SPC,  KC_SPC,  JP_HENK, ML_RAI, KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT  \
+    DM_PLY1, KC_LALT, ML_ADJ, KC_LGUI, ML_LOW, JP_MHEN, KC_SPC,  KC_SPC,  JP_HENK, ML_RAI, DM_PLY1, DM_PLY2, JP_CIRC, JP_YEN \
     ),
 
   /* Lower JIS Normal
@@ -128,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------|------+
    * |      | MODE | HUE- | SAT- | VAL- |      |      |      |      | MODE | HUE- | SAT- | VAL- |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+   * |      |      |      |      | REC2 | REC1 | STOP |      |      |      |      |      |      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_ADJUST] =  LAYOUT( \
@@ -136,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX, DL_BAS,  XXXXXXX, AG_NORM, AG_SWAP, XXXXXXX,                   XXXXXXX, DL_BAS,  XXXXXXX, AG_NORM, AG_SWAP, XXXXXXX, \
     XXXXXXX, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX,                   XXXXXXX, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, \
     XXXXXXX, RGB_SMOD,RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_SMOD,RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, \
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
+    _______, _______, _______, _______, DM_REC2, DM_REC1, DM_STOP, _______, _______, _______, _______, _______, _______, _______  \
     ),
 };
 
@@ -201,6 +210,10 @@ void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_record_dynamic_macro(keycode, record)) {
+      return false;
+  }
+
   #ifdef SSD1306OLED
     if (record->event.pressed) {
       set_keylog(keycode, record);
