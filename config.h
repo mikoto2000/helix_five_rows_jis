@@ -55,4 +55,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
    //#define RGBLIGHT_EFFECT_ALTERNATING
 #endif
 
+// for Mod Tap key
+#define PERMISSIVE_HOLD
+#define RETRO_TAPPING
+
 #endif /* CONFIG_USER_H */

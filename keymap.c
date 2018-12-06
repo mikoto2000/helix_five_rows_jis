@@ -68,6 +68,12 @@ enum custom_keycodes {
 #define KC_C_V RCTL(KC_V)
 #define KC_C_Y RCTL(KC_C)
 
+// Hold:Shift
+#define KC_TSHS SFT_T(KC_SPC)
+#define KC_TSHM SFT_T(JP_MHEN)
+#define KC_TSHH SFT_T(JP_HENK)
+#define KC_TSHS SFT_T(KC_SPC)
+
 #if HELIX_ROWS == 5
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Qwerty JIS Normal
@@ -80,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   B  |   N  |   M  |  ,<  |  .>  |  /?  |  \_  |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * | PLAY1| Alt  |Adjust| GUI  |Lower | Mhen |Space |Space | Henk |Raise | PLAY1| PLAY2|  ^~  |  \|  |
+   * | PLAY1| Alt  |Adjust| GUI  |Lower | TSHM | TSHS | TSHS | TSHH |Raise | PLAY1| PLAY2|  ^~  |  \|  |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_BASE] = LAYOUT( \
@@ -88,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_Q,    KC_W,   KC_E,    KC_R,   KC_T,                      KC_Y,    KC_U,   KC_I,    KC_O,    KC_P,    JP_AT,   \
     KC_LCTL, KC_A,    KC_S,   KC_D,    KC_F,   KC_G,                      KC_H,    KC_J,   KC_K,    KC_L,    KC_SCLN, JP_COLN, \
     KC_LSFT, KC_Z,    KC_X,   KC_C,    KC_V,   KC_B,    KC_N,    KC_B,    KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, JP_BSLS,  \
-    DM_PLY1, KC_LALT, ML_ADJ, KC_LGUI, ML_LOW, JP_MHEN, KC_SPC,  KC_SPC,  JP_HENK, ML_RAI, DM_PLY1, DM_PLY2, JP_CIRC, JP_YEN \
+    DM_PLY1, KC_LALT, ML_ADJ, KC_LGUI, ML_LOW, KC_TSHM, KC_TSHS, KC_TSHS, KC_TSHH, ML_RAI, DM_PLY1, DM_PLY2, JP_CIRC, JP_YEN \
     ),
 
   /* Lower JIS Normal
@@ -101,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+-------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |       |      |      |C+Left|      |C+Left|      |      |      |      |      |      |
    * |------+------+-------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |       |      |      |      | Del  |      |      |      |      |      |      |      |
+   * |      |      |       |      |      |      |      |      |      |      |      |      |      |      |
    * `--------------------------------------------------------------------------------------------------'
    */
   [_LOWER] = LAYOUT( \
@@ -109,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, XXXXXXX, KC_C_R,  XXXXXXX, XXXXXXX, XXXXXXX,                   KC_C_Y,  XXXXXXX, XXXXXXX, XXXXXXX, KC_C_V,  XXXXXXX, \
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX, \
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_C_L,  XXXXXXX, KC_C_L,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    _______, _______, _______, _______, XXXXXXX, XXXXXXX, KC_DEL,  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX  \
+    _______, _______, _______, _______, XXXXXXX, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX  \
     ),
 
   /* Raise JIS Normal
@@ -130,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,                    XXXXXXX, KC_DEL,  KC_ENT,  XXXXXXX, JP_AT,   JP_LBRC, \
     _______, KC_ESC,  XXXXXXX, XXXXXXX, KC_ESC,  XXXXXXX,                   XXXXXXX, KC_BSPC, KC_ENT,  KC_SCLN, JP_COLN, JP_RBRC, \
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_COMM, KC_DOT,  KC_SLSH, JP_BSLS, \
-    _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX  \
+    _______, _______, _______, _______, XXXXXXX, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX  \
     ),
 
   /* Adjust (Lower + Raise) Common map for Normal and Exchange
